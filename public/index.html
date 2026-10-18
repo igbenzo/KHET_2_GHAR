@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Khet2Ghar | Agricultural Marketplace</title>
+  <meta name="description" content="Buy fresh produce directly from farmers, or list your crops for buyers near you.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 1. Opening animation -->
+  <div id="splash" class="splash">
+    <svg class="sprout" viewBox="0 0 120 120" aria-hidden="true">
+      <path class="soil" d="M20 100 Q60 88 100 100"/>
+      <path class="stem" d="M60 98 V52"/>
+      <path class="leaf l1" d="M60 70 Q30 66 26 42 Q54 42 60 70Z"/>
+      <path class="leaf l2" d="M60 56 Q90 54 96 28 Q66 28 60 56Z"/>
+    </svg>
+    <h1 class="splash-title">Khet2Ghar</h1>
+    <p class="splash-sub">From the farm to your home</p>
+    <div class="bar"><span></span></div>
+  </div>
+
+  <!-- 2. Log in / Sign up -->
+  <section id="auth" class="screen" hidden>
+    <div class="auth-wrap">
+      <div class="auth-side">
+        <h2 class="brand">Khet2Ghar</h2>
+        <p>Farmers set their own price. Buyers see who grew it and where. No middlemen in between.</p>
+        <ul><li>🍅 Fresh produce, direct from the field</li><li>📍 Find farmers near you</li><li>💳 Safe UPI, card and net banking payments</li></ul>
+      </div>
+      <div class="auth-card">
+        <div class="tabs" role="tablist">
+          <button class="tab on" data-tab="login" role="tab">Log in</button>
+          <button class="tab" data-tab="signup" role="tab">Sign up</button>
+        </div>
+
+        <form id="loginForm" class="stack" novalidate>
+          <h3>Welcome back</h3>
+          <label>Username<input name="username" autocomplete="username" required></label>
+          <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+          <button class="btn dark" type="submit">Log in</button>
+          <p class="muted">You only need to log in once on this device.</p>
+        </form>
+
+        <div id="signupBox" class="stack" hidden>
+          <h3>Create your account</h3>
+          <p class="muted">New here? Tell us who you are and we'll set things up.</p>
+          <a class="btn" href="#/role">Continue to sign up</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Farmer or buyer? -->
+  <section id="role" class="screen" hidden>
+    <div class="center">
+      <a class="back" href="#/auth">&larr; Back</a>
+      <h2>Are you a farmer or a buyer?</h2>
+      <p class="muted">Pick one. This decides what you can do on Khet2Ghar.</p>
+      <div class="roles">
+        <a class="role farmer" href="#/farmer"><span>👨‍🌾</span><h3>I am a farmer</h3><p>List my crops and receive orders.</p></a>
+        <a class="role buyer" href="#/buyer"><span>🛒</span><h3>I am a buyer</h3><p>Search produce and place orders.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4a. Farmer account -->
+  <section id="farmer" class="screen" hidden>
+    <div class="center narrow">
+      <a class="back" href="#/role">&larr; Back</a>
+      <form id="farmerForm" class="card farmer-card" novalidate>
+                <h2>Create your farmer account</h2>
+        <label>Full name<input name="name" placeholder="Ramesh Patel" required></label>
+        <label>Username<input name="username" autocomplete="username" placeholder="ramesh_patel" required></label>
+        <label>Password (at least 6 characters)<input name="password" type="password" minlength="6" autocomplete="new-password" required></label>
+        <label>Phone number<input name="phone" inputmode="numeric" maxlength="10" placeholder="9876543210" required></label>
+        <label>Complete address<textarea name="address" rows="2" placeholder="Village Pardi, Taluka Valsad, Dist. Valsad, Gujarat" required></textarea></label>
+        <label>Bank or UPI details<input name="bank" placeholder="SBI, ramesh@okicici"></label>
+        <button class="btn" type="submit">Create account</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 4b. Buyer account -->
+  <section id="buyer" class="screen" hidden>
+    <div class="center narrow">
+      <a class="back" href="#/role">&larr; Back</a>
+      <form id="buyerForm" class="card buyer-card" novalidate>
+                <h2>Create your buyer account</h2>
+        <label>Full name or company<input name="name" placeholder="Neha Sharma" required></label>
+        <label>Username<input name="username" autocomplete="username" placeholder="neha_sharma" required></label>
+        <label>Password (at least 6 characters)<input name="password" type="password" minlength="6" autocomplete="new-password" required></label>
+        <label>Phone number<input name="phone" inputmode="numeric" maxlength="10" placeholder="9123456780" required></label>
+        <label>Delivery address<textarea name="address" rows="2" placeholder="Flat 302, Green Park, Vapi, Gujarat, 396191" required></textarea></label>
+        <label>GSTIN (registered businesses)<input name="gstin" placeholder="24ABCDE1234F1Z5"></label>
+        <label>Payment method
+          <select name="payment"><option>UPI</option><option>Card</option><option>Net Banking</option></select>
+        </label>
+        <button class="btn" type="submit">Create account</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 5. Home -->
+  <div id="home" class="screen" hidden>
+    <header class="nav">
+      <a class="brand" href="#top">Khet2Ghar</a>
+      <nav>
+        <a href="#market">Marketplace</a>
+        <a id="sellLink" href="#sell" hidden>Sell crops</a>
+        <a href="#activity">Activity</a>
+        <a href="#how">How it works</a>
+      </nav>
+      <div id="session" class="session"></div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-text">
+          <h1 id="greet">Fresh from the farm, straight to your door.</h1>
+          <p>Farmers set their own price. Buyers see who grew it and where. No middlemen in between.</p>
+          <div class="cta">
+            <a class="btn" href="#market">Browse produce</a>
+            <a class="btn ghost" id="heroSell" href="#sell" hidden>List a crop</a>
+          </div>
+        </div>
+        <div class="price-board" aria-label="Sample prices">
+          <h2>Today at the mandi</h2>
+          <ul>
+            <li><span>🍅 Tomatoes</span><b>₹30/kg</b></li>
+            <li><span>🥔 Potatoes</span><b>₹25/kg</b></li>
+            <li><span>🍎 Apples</span><b>₹120/kg</b></li>
+            <li><span>🌾 Wheat</span><b>₹35/kg</b></li>
+          </ul>
+          <p class="muted" id="stats">Loading live listings…</p>
+        </div>
+      </section>
+
+      <section id="market" class="section">
+        <div class="section-head">
+          <h2>Marketplace</h2>
+          <p>Search by name, filter by category or location, then place your order.</p>
+        </div>
+        <div class="filters">
+          <input id="q" type="search" placeholder="Search for products…" aria-label="Search products">
+          <select id="cat" aria-label="Category">
+            <option value="">All categories</option>
+            <option>Vegetables</option><option>Fruits</option><option>Grains</option><option>Pulses</option><option>Dairy</option><option>Other</option>
+          </select>
+          <input id="loc" type="search" placeholder="Location (e.g. Valsad)" aria-label="Location">
+          <select id="sort" aria-label="Sort">
+            <option value="new">Newest first</option>
+            <option value="low">Price: low to high</option>
+            <option value="high">Price: high to low</option>
+          </select>
+        </div>
+        <div id="grid" class="grid"></div>
+      </section>
+
+      <section id="sell" class="section alt" hidden>
+        <div class="section-head"><h2>List a crop</h2><p>Buyers see your listing the moment you add it.</p></div>
+        <form id="cropForm" class="card crop-form" novalidate>
+          <label>Crop name<input name="crop" placeholder="Tomatoes" required></label>
+          <div class="two">
+            <label>Category
+              <select name="category"><option>Vegetables</option><option>Fruits</option><option>Grains</option><option>Pulses</option><option>Dairy</option><option>Other</option></select>
+            </label>
+            <label>Price (₹/kg)<input name="price" type="number" min="1" step="0.5" required></label>
+          </div>
+          <div class="two">
+            <label>Quantity (kg)<input name="quantity" type="number" min="1" required></label>
+            <label>Pickup location<input name="location" placeholder="Valsad"></label>
+          </div>
+          <button class="btn" type="submit">Add listing</button>
+        </form>
+      </section>
+
+      <section id="activity" class="section">
+        <div class="section-head"><h2 id="activityTitle">Recent activity</h2><p>Every order with its receipt. Tap Receipt to view or print it.</p></div>
+        <div id="activityList"></div>
+      </section>
+
+      <section id="how" class="section">
+        <div class="section-head"><h2>How it works</h2></div>
+        <ol class="steps">
+          <li><h3>Register</h3><p>Farmers and buyers create an account with their name, phone number and address.</p></li>
+          <li><h3>List crops</h3><p>Farmers add price, quantity and category for what they have ready.</p></li>
+          <li><h3>Find and match</h3><p>Buyers search and filter by category, price or location.</p></li>
+          <li><h3>Order securely</h3><p>Buyers pay by UPI, card or net banking. The farmer is notified.</p></li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <b>Khet2Ghar</b>
+      <span>Supporting farmers. Empowering buyers. Building a sustainable future.</span>
+    </footer>
+  </div>
+
+  <dialog id="receiptDlg">
+    <div class="receipt" id="receiptBody"></div>
+    <div class="row noprint"><button type="button" class="btn ghost" id="receiptClose">Close</button><button type="button" class="btn" id="receiptPrint">Print / Save PDF</button></div>
+  </dialog>
+
+  <dialog id="orderDlg">
+    <form id="orderForm" novalidate>
+      <h3 id="orderTitle"></h3>
+      <p class="muted" id="orderInfo"></p>
+      <label>Quantity (kg)<input id="orderQty" type="number" min="0" step="any" inputmode="decimal" placeholder="e.g. 5"></label>
+      <p class="total">Total: <b id="orderTotal">₹0</b></p>
+      <p class="err" id="orderMsg" role="alert" hidden></p>
+      <div class="row">
+        <button type="button" class="btn ghost" id="orderCancel">Cancel</button>
+        <button type="submit" class="btn" id="orderBtn">Place order</button>
+      </div>
+    </form>
+    <div id="orderDone" hidden>
+      <h3>Order placed</h3>
+      <p id="orderDoneText"></p>
+      <div class="row"><button type="button" class="btn" id="orderDoneBtn">Done</button></div>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
