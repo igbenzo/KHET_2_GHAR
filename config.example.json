@@ -1,0 +1,7 @@
+{
+  "storage": "excel",
+  "testerUsername": "MARCOS",
+  "testerPassword": "choose-a-password",
+  "scriptUrl": "only needed if storage is google",
+  "secret": "only needed if storage is google"
+}

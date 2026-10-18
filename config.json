@@ -1,0 +1,7 @@
+{
+  "storage": "excel",
+  "scriptUrl": "(only needed if storage is google)",
+  "secret": "(only needed if storage is google)",
+  "testerPassword": "@$)*^)!#!)%#",
+  "testerUsername": "MARCOS"
+}
